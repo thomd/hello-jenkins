@@ -13,9 +13,7 @@ node {
     sh 'npm install'
   }
 
-  stage('Unit Test') {
-    ansiColor('xterm') {
-      sh 'npm run -s test'
-    }
+  stage('Test') {
+    sh 'npm test'
   }
 }
