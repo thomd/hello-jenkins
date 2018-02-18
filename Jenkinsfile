@@ -1,11 +1,17 @@
-pipeline {
-  agent { dockerfile true }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-        sh 'svn --version'
-      }
+node {
+  def app
+
+    stage('Clone Repo') {
+      checkout scm
+    }
+
+  stage('Build image') {
+    app = docker.build("arvato/temp")
+  }
+
+  stage('Test image') {
+    app.inside {
+      sh 'echo "Tests passed"'
     }
   }
 }

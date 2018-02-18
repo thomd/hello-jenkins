@@ -1,3 +1,11 @@
-FROM node:7-alpine
+FROM node:9-alpine
 
-RUN apk add -U subversion
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["node", "app.js"]
