@@ -1,19 +1,12 @@
-node {
-  stage('Initialize') {
-    def node = tool name: 'Node-8.9.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-    env.PATH = "${node}/bin:${env.PATH}"
-    deleteDir()
+pipeline {
+  agent {
+    docker { image 'node:7-alpine' }
   }
-
-  stage('Checkout') {
-    checkout scm
-  }
-
-  stage('Build') {
-    sh 'npm install'
-  }
-
-  stage('Test') {
-    sh 'npm test'
+  stages {
+    stage('Test') {
+      steps {
+	sh 'node --version'
+      }
+    }
   }
 }
