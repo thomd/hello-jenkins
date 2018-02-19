@@ -1,5 +1,6 @@
 node {
   def app
+  deleteDir()
 
   stage('Clone Repo') {
     checkout scm
