@@ -1,9 +1,9 @@
 node {
   def app
 
-    stage('Clone Repo') {
-      checkout scm
-    }
+  stage('Clone Repo') {
+    checkout scm
+  }
 
   stage('Build image') {
     app = docker.build("arvato/temp")
