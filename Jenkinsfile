@@ -10,7 +10,7 @@ node {
   }
 
   stage('Test image') {
-    app.inside {
+    app.inside('-u root:root') {
       sh 'npm test'
     }
   }
